@@ -20,6 +20,10 @@ componentDidMount(){
   setInterval(() => this.getTimeUntil(this.props.deadLine), 1000 );
 }
 
+leadZero(num){
+  return num < 10 ? '0'+num : num ;
+}
+
 getTimeUntil(deadLine){
   const time = Date.parse(deadLine) - Date.parse(new Date());
   const seconds = Math.floor((time/1000)%60);
@@ -33,10 +37,10 @@ getTimeUntil(deadLine){
   render(){
     return(
       <div>
-      <div className="ClockTime">{this.state.days} days</div>
-      <div className="ClockTime">{this.state.hours} hours</div>
-      <div className="ClockTime">{this.state.minutes} minutes</div>
-      <div className="ClockTime">{this.state.seconds} seconds</div>
+      <div className="ClockTime">{this.leadZero(this.state.days)} days</div>
+      <div className="ClockTime">{this.leadZero(this.state.hours)} hours</div>
+      <div className="ClockTime">{this.leadZero(this.state.minutes)} minutes</div>
+      <div className="ClockTime">{this.leadZero(this.state.seconds)} seconds</div>
       </div>
     )
   }
